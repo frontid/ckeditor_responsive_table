@@ -5,8 +5,7 @@ const sourcemaps = require('gulp-sourcemaps');
 gulp.task('build', () =>
   gulp.src('src/*.js')
     .pipe(sourcemaps.init())
-    .pipe(babel())
+    .pipe(babel({presets: ['env']}))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'))
 );
-
