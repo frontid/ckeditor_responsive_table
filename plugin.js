@@ -3,9 +3,13 @@
  * Responsive table plugin.
  */
 
-CKEDITOR.plugins.add('responsive_table', {
+CKEDITOR.plugins.add('ckeditor_responsive_table', {
   requires: 'dialog,table',
-  icons: 'responsive_table',
+
+  // Must be the same name of editor.ui.addButton('thisName')
+  // Is case insensitive.
+  icons: 'responsiveTable',
+
   init: function (editor) {
     var $ = jQuery;
 
@@ -51,8 +55,8 @@ CKEDITOR.plugins.add('responsive_table', {
 
 
     // Ad the button to the toolbar.
-    editor.ui.addButton('responsive_table', {
-      label: 'Table',
+    editor.ui.addButton('ResponsiveTable', {
+      label: 'Responsive table',
       command: 'setTable'
     });
 
