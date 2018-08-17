@@ -1,0 +1,19 @@
+{
+  "name": "ckeditor_responsive_table",
+  "version": "1.0.0",
+  "main": "plugin.js",
+  "repository": "git@github.com:frontid/ckeditor_responsive_table.git",
+  "author": "Marcelo Tosco @capynet <marcelo@front.id>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-sourcemaps": "^2.6.4"
+  },
+  "scripts": {
+    "build": "gulp build"
+  }
+}
