@@ -1,6 +1,4 @@
-﻿import Tools from "./Tools";
-
-/**
+﻿﻿/**
  * @file
  * Responsive table plugin.
  */
@@ -15,6 +13,30 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
   init: function (editor) {
     var $ = jQuery;
 
+    /**
+     * Updates the hidden labels (only visible at mobile).
+     *
+     * @param _table Ckeditor's table element.
+     */
+    function updateHiddenHeaderLabels(_table) {
+
+      var $table = $(_table.$);
+      var columnTh = $table.find("thead th");
+
+      columnTh.each(function () {
+        var $th = $(this);
+        var columnIndex = $(this).index() + 1;
+        var $cols = $table.find('tr td:nth-child(' + columnIndex + ')');
+
+        $cols.each(function () {
+          var $col = $(this);
+          $col.attr('data-label', $th.text());
+        });
+
+      });
+
+    }
+
     editor.addCommand('setTable', new CKEDITOR.dialogCommand('table_dialog'));
     CKEDITOR.dialog.add('table_dialog', this.path + 'dialogs/table.js');
 
@@ -25,7 +47,7 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
       if (el !== null && el.$.tagName === "TH") {
         var _table = el.getParent().getParent().getParent();
         if (_table.hasClass('ck-responsive-table')) {
-          Tools.updateHiddenHeaderLabels(_table);
+          updateHiddenHeaderLabels(_table);
         }
       }
 

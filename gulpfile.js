@@ -1,27 +1,65 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
+const browserify = require('browserify');
+const babelify = require("babelify");
+const source = require("vinyl-source-stream");
+const buffer = require("vinyl-buffer");
+const del = require("del");
+var vinylPaths = require('vinyl-paths');
+
+const jsFilesConf = [
+  {
+    srcFile: "plugin.js",
+    srcPath: "./src/",
+    dest: "./dist"
+  },
+  {
+    srcFile: "table.js",
+    srcPath: "./src/dialogs/",
+    dest: "./dist/dialogs"
+  }
+];
+
 
 /**
- * Copy all static files.
+ * Clean dist dir.
  */
-gulp.task('babel', () =>
-  gulp.src('src/**/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist'))
+gulp.task('clean', () => {
+  return gulp.src('dist')
+    .pipe(vinylPaths(del))
+  }
 );
 
+
 /**
  * Copy all static files.
  */
-gulp.task('copy', () =>
-  gulp.src('./src/icons/**/*').pipe(gulp.dest('./dist/icons'))
+gulp.task('copy', () => {
+    return gulp.src('./src/icons/**/*')
+      .pipe(gulp.dest('./dist/icons'))
+  }
+);
+
+
+/**
+ * Copy all static files.
+ */
+gulp.task('babel', () => {
+    jsFilesConf.map(file => {
+      let src = file.srcPath + file.srcFile;
+      return browserify({entries: [src]})
+        .transform(babelify)
+        .bundle()
+        .pipe(source(file.srcFile))
+        .pipe(buffer())
+        .pipe(gulp.dest(file.dest));
+    });
+  }
 );
 
 
 /**
  * Build task.
  */
-gulp.task('build', ['copy', 'babel']);
+gulp.task('build', ['clean', 'copy', 'babel']);
