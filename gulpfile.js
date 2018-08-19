@@ -21,15 +21,15 @@ const jsFilesConf = [
   }
 ];
 
-
-/**
- * Clean dist dir.
- */
-gulp.task('clean', () => {
-  return gulp.src('dist')
-    .pipe(vinylPaths(del))
-  }
-);
+//
+// /**
+//  * Clean dist dir.
+//  */
+// gulp.task('clean', () => {
+//   return gulp.src('dist')
+//     .pipe(vinylPaths(del))
+//   }
+// );
 
 
 /**
@@ -62,4 +62,13 @@ gulp.task('babel', () => {
 /**
  * Build task.
  */
-gulp.task('build', ['clean', 'copy', 'babel']);
+gulp.task('build', gulp.series('copy', 'babel'), function () {
+  return gulp;
+});
+
+
+// Watch changes in general and detect when something relevant gets changed.
+gulp.task('watch', gulp.series('build'), function () {
+  gulp.watch('src/**/*', ['build']);
+});
+
