@@ -1,74 +1,79 @@
 const gulp = require('gulp');
-const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
 const browserify = require('browserify');
 const babelify = require("babelify");
 const source = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
 const del = require("del");
-var vinylPaths = require('vinyl-paths');
 
-const jsFilesConf = [
-  {
-    srcFile: "plugin.js",
-    srcPath: "./src/",
-    dest: "./dist"
-  },
-  {
-    srcFile: "table.js",
-    srcPath: "./src/dialogs/",
-    dest: "./dist/dialogs"
-  }
-];
 
-//
-// /**
-//  * Clean dist dir.
-//  */
-// gulp.task('clean', () => {
-//   return gulp.src('dist')
-//     .pipe(vinylPaths(del))
-//   }
-// );
+const paths = {
+  scripts: [
+    {
+      srcFile: "plugin.js",
+      srcPath: "./src/",
+      dest: "./dist"
+    },
+    {
+      srcFile: "table.js",
+      srcPath: "./src/dialogs/",
+      dest: "./dist/dialogs"
+    }
+  ]
+};
+
+
+/**
+ * Clean dist dir.
+ */
+function clean() {
+  return del(['dist']);
+}
 
 
 /**
  * Copy all static files.
  */
-gulp.task('copy', () => {
-    return gulp.src('./src/icons/**/*')
-      .pipe(gulp.dest('./dist/icons'))
-  }
-);
+function copy() {
+  return gulp.src('./src/icons/**/*')
+    .pipe(gulp.dest('./dist/icons'))
+}
 
 
 /**
- * Copy all static files.
+ * Converts ES6 code into compatible browser code.
  */
-gulp.task('babel', () => {
-    jsFilesConf.map(file => {
-      let src = file.srcPath + file.srcFile;
-      return browserify({entries: [src]})
-        .transform(babelify)
-        .bundle()
-        .pipe(source(file.srcFile))
-        .pipe(buffer())
-        .pipe(gulp.dest(file.dest));
-    });
-  }
-);
+function babelize() {
+  paths.scripts.map(file => {
+    let src = file.srcPath + file.srcFile;
+    browserify({entries: [src]})
+      .transform(babelify)
+      .bundle()
+      .pipe(source(file.srcFile))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest(file.dest));
+  });
 
+  // Ne need to return a dummy stream to avoid
+  // "The following tasks did not complete: /
+  // Did you forget to signal async completion?"
+  return gulp.src('.');
+}
+
+/**
+ * Watcher.
+ */
+function watchTask() {
+  return gulp.watch('src/**/*', buildTask);
+}
 
 /**
  * Build task.
  */
-gulp.task('build', gulp.series('copy', 'babel'), function () {
-  return gulp;
-});
+var buildTask = gulp.series(clean, copy, babelize);
 
-
-// Watch changes in general and detect when something relevant gets changed.
-gulp.task('watch', gulp.series('build'), function () {
-  gulp.watch('src/**/*', ['build']);
-});
-
+// Define tasks.
+exports.build = buildTask;
+exports.watch = watchTask;

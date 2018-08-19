@@ -1,4 +1,9 @@
-﻿﻿CKEDITOR.dialog.add('table_dialog', function (editor) {
+/**
+ * @file
+ * Responsive table plugin.
+ */
+
+CKEDITOR.dialog.add('table_dialog', function (editor) {
   var dialog;
   var $ = jQuery;
   var table;

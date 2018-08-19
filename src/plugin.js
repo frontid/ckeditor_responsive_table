@@ -1,4 +1,4 @@
-﻿﻿/**
+/**
  * @file
  * Responsive table plugin.
  */
