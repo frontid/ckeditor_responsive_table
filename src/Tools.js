@@ -6,21 +6,19 @@ class Tools {
   /**
    * Updates the hidden labels (only visible at mobile).
    *
-   * @param _table Ckeditor's table element.
+   * @param $table Ckeditor's table element.
    */
-  static updateHiddenHeaderLabels(_table) {
-    console.log('actualizando labe');
-    var $table = $(_table.$);
-    var columnTh = $table.find("thead th");
+  static updateHiddenHeaderLabels($table) {
+    let columnTh = $table.find("thead th");
 
-    columnTh.each(function () {
-      var $th = $(this);
-      var columnIndex = $(this).index() + 1;
-      var $cols = $table.find('tr td:nth-child(' + columnIndex + ')');
+    columnTh.toArray().forEach(function (th) {
+      let $th = th;
+      let columnIndex = $th.getIndex() + 1;
+      let $cols = $table.find('tr td:nth-child(' + columnIndex + ')');
 
-      $cols.each(function () {
-        var $col = $(this);
-        $col.attr('data-label', $th.text());
+      $cols.toArray().forEach(function (col) {
+        let $col = col.$;
+        $col.setAttribute('data-label', $th.getText());
       });
 
     });

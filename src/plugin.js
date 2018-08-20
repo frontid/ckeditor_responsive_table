@@ -13,8 +13,6 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
   icons: 'responsiveTable',
 
   init: function (editor) {
-    var $ = jQuery;
-
     editor.addCommand('setTable', new CKEDITOR.dialogCommand('table_dialog'));
 
     // On init we need to track the table changes.
@@ -42,7 +40,6 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
 
 CKEDITOR.dialog.add('table_dialog', function (editor) {
   var dialog;
-  var $ = jQuery;
   var table;
 
   /**
