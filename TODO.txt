@@ -1,0 +1,2 @@
+- source maps are wrong.
+- Convert code to modules and add a pattern to allow a utils library
