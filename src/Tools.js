@@ -35,7 +35,6 @@ class Tools {
    * @return {CKEDITOR.dom.element}
    */
   static buildTable(rows, cols, setHeader) {
-    console.log('haciendo tabla');
     var table = new CKEDITOR.dom.element("table");
     table.addClass('table');
     table.addClass('ck-responsive-table');
@@ -70,14 +69,14 @@ class Tools {
 
 
   /**
-   * @docme
+   * Relocates the caret into the first cell.
    *
    * @param posX
    * @param posY
    * @param table
+   * @param editor
    */
   static moveCursorToCel(posX, posY, table, editor) {
-    console.log('posicionando el cursor');
     setTimeout(function () {
       var firstCell = new CKEDITOR.dom.element(table.$.rows[posX].cells[posY]);
       var range = editor.createRange();

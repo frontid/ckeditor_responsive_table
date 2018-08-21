@@ -67,7 +67,6 @@ CKEDITOR.dialog.add('table_dialog', function (editor) {
     onLoad: function () {
       dialog = this;
       this.setupContent();
-      console.log('el nuevo');
     },
 
     /**

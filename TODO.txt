@@ -1,3 +1,6 @@
-- source maps are wrong.
-- Convert code to modules and add a pattern to allow a utils library
-- Remove jquery dependency.
+- Fix source maps. Are wrong.
+- Allow an existent table (a responsive table) to be edited.
+- Add a sample.
+- Create the CKEditor v5 plugin.
+- Add minimal CSS.
+- Complete README with an explanation and usages.
