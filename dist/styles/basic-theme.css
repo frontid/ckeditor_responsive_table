@@ -1,0 +1,72 @@
+.ck-responsive-table.ckrt-basic-theme {
+  border-collapse: collapse;
+}
+
+.ck-responsive-table.ckrt-basic-theme thead {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table.ckrt-basic-theme thead {
+    display: table-header-group;
+  }
+}
+
+.ck-responsive-table.ckrt-basic-theme thead tr {
+  background: #333;
+}
+
+.ck-responsive-table.ckrt-basic-theme thead th {
+  font-weight: 600;
+  border-bottom: 2px solid #369;
+  padding: 10px 5px;
+}
+
+.ck-responsive-table.ckrt-basic-theme tbody tr {
+  border-bottom: 2px solid #333;
+  display: block;
+  margin-bottom: 13px;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table.ckrt-basic-theme tbody tr {
+    display: table-row;
+    border-bottom: 1px solid #333;
+  }
+}
+
+.ck-responsive-table.ckrt-basic-theme tbody tr:nth-child(even) {
+  background: red;
+}
+
+.ck-responsive-table.ckrt-basic-theme tbody tr td {
+  display: block;
+  text-align: right;
+  padding: 10px 5px;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table.ckrt-basic-theme tbody tr td {
+    text-align: left;
+    display: table-cell;
+  }
+}
+
+.ck-responsive-table.ckrt-basic-theme tbody tr td:before {
+  content: attr(data-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table.ckrt-basic-theme tbody tr td:before {
+    content: none;
+  }
+}
+
+.ck-responsive-table.ckrt-basic-theme tbody tr td:last-child {
+  border-bottom: 0;
+}
+
+/*# sourceMappingURL=basic-theme.css.map */

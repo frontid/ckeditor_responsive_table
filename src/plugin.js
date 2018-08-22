@@ -35,7 +35,7 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
       command: 'setTable'
     });
 
-    editor.addContentsCss(this.path + 'styles/plugin.css');
+    // editor.addContentsCss(this.path + 'styles/plugin.css');
 
   }
 });
@@ -81,16 +81,15 @@ CKEDITOR.dialog.add('table_dialog', function (editor) {
      * When confirm the dialog.
      */
     onOk: function () {
-      var data = {};
+      let data = {};
       this.commitContent(data);
-      var info = data.info;
-      var rows = parseInt(info.txtRows, 10) || 1;
-      var cols = parseInt(info.txtCols, 10) || 1;
-      table = Tools.buildTable(rows, cols, info.setHeader);
+      table = Tools.buildTable(data.info);
       editor.insertElement(table);
       Tools.moveCursorToCel(0, 0, table, editor);
 
-
+      /**
+       * @docme
+       */
       editor.on('change', function (e) {
         var el = editor.getSelection().getStartElement();
 
@@ -138,6 +137,17 @@ CKEDITOR.dialog.add('table_dialog', function (editor) {
             id: 'setHeader',
             'default': 0,
             label: "Add a header",
+            required: false,
+            setup: function (selectedTable) {
+              // this.setValue(tableColumns(selectedTable));
+            },
+            commit: commitValue
+          },
+          {
+            type: 'checkbox',
+            id: 'useBasicTheme',
+            'default': 0,
+            label: "Use the basic styling",
             required: false,
             setup: function (selectedTable) {
               // this.setValue(tableColumns(selectedTable));

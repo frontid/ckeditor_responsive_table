@@ -1,0 +1,74 @@
+@import "breakpoint";
+
+$tab: 768px;
+
+.ck-responsive-table.ckrt-basic-theme {
+  border-collapse: collapse;
+
+  thead {
+    display: none;
+
+    @include breakpoint ($tab) {
+      display: table-header-group;
+    }
+
+    tr {
+      background: #333;
+    }
+
+    th {
+      font-weight: 600;
+      border-bottom: 2px solid #369;
+      padding: 10px 5px;
+    }
+
+  }
+
+  tbody {
+    tr {
+      border-bottom: 2px solid #333;
+      display: block;
+      margin-bottom: 13px;
+
+      @include breakpoint ($tab) {
+        display: table-row;
+        border-bottom: 1px solid #333;
+      }
+
+      &:nth-child(even) {
+        background: red;
+      }
+
+      td {
+        display: block;
+        text-align: right;
+        padding: 10px 5px;
+
+        @include breakpoint ($tab) {
+          text-align: left;
+          display: table-cell;
+        }
+
+        &:before {
+          content: attr(data-label);
+          font-weight: 600;
+          text-transform: uppercase;
+          float: left;
+
+          @include breakpoint ($tab) {
+            content: none;
+          }
+
+        }
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+      }
+
+    }
+  }
+
+}
+

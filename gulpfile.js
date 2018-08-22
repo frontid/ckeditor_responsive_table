@@ -54,7 +54,7 @@ function babelizeTask() {
 
 // Compiles sass files and moves the result to dist.
 function sassTask() {
-  return gulp.src('./src/styles/plugin.scss')
+  return gulp.src('./src/styles/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'expanded',

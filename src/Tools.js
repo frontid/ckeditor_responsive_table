@@ -28,24 +28,29 @@ class Tools {
   /**
    * Generates the DOM table.
    *
-   * @param {Number} rows
-   * @param {Number} cols
-   * @param setHeader
+   * @param {Object} data
    *
    * @return {CKEDITOR.dom.element}
    */
-  static buildTable(rows, cols, setHeader) {
-    var table = new CKEDITOR.dom.element("table");
+  static buildTable(data) {
+    let rows = parseInt(data.txtRows, 10) || 1;
+    let cols = parseInt(data.txtCols, 10) || 1;
+
+    let table = new CKEDITOR.dom.element("table");
     table.addClass('table');
     table.addClass('ck-responsive-table');
     table.addClass('cke_show_border');
 
-    if (setHeader === true) {
-      var header = new CKEDITOR.dom.element("thead");
-      var tr = new CKEDITOR.dom.element("tr");
+    if (data.useBasicTheme === true) {
+      table.addClass('ckrt-basic-theme');
+    }
 
-      for (var k = 0; k < cols; k++) {
-        var th = new CKEDITOR.dom.element("th");
+    if (data.setHeader === true) {
+      let header = new CKEDITOR.dom.element("thead");
+      let tr = new CKEDITOR.dom.element("tr");
+
+      for (let k = 0; k < cols; k++) {
+        let th = new CKEDITOR.dom.element("th");
         tr.append(th);
       }
 
@@ -53,11 +58,11 @@ class Tools {
       table.append(header);
     }
 
-    for (var i = 0; i < rows; i++) {
-      var $row = new CKEDITOR.dom.element("tr");
+    for (let i = 0; i < rows; i++) {
+      let $row = new CKEDITOR.dom.element("tr");
 
-      for (var j = 0; j < cols; j++) {
-        var $col = new CKEDITOR.dom.element("td");
+      for (let j = 0; j < cols; j++) {
+        let $col = new CKEDITOR.dom.element("td");
         $row.append($col);
       }
 
@@ -78,8 +83,8 @@ class Tools {
    */
   static moveCursorToCel(posX, posY, table, editor) {
     setTimeout(function () {
-      var firstCell = new CKEDITOR.dom.element(table.$.rows[posX].cells[posY]);
-      var range = editor.createRange();
+      let firstCell = new CKEDITOR.dom.element(table.$.rows[posX].cells[posY]);
+      let range = editor.createRange();
       range.moveToPosition(firstCell, CKEDITOR.POSITION_AFTER_START);
       range.select();
     }, 0);

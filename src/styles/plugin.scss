@@ -3,7 +3,6 @@
 $tab: 768px;
 
 .ck-responsive-table {
-  background: red;
 
   thead {
     display: none;
@@ -12,49 +11,31 @@ $tab: 768px;
       display: table-header-group;
     }
 
-    th {
-      font-weight: bold;
-    }
-
   }
 
   tbody {
     tr {
-      border-bottom: 2px solid black;
       display: block;
-      margin-bottom: 13px;
 
       @include breakpoint ($tab) {
         display: table-row;
-        border-bottom: 1px solid red;
-      }
-
-      &:nth-child(even) {
-        background: olive;
       }
 
       td {
         display: block;
-        text-align: right;
 
         @include breakpoint ($tab) {
-          text-align: left;
           display: table-cell;
         }
 
         &:before {
           content: attr(data-label);
-          font-weight: 600;
           float: left;
 
           @include breakpoint ($tab) {
             content: none;
           }
 
-        }
-
-        &:last-child {
-          border-bottom: 0;
         }
 
       }
