@@ -5,6 +5,7 @@ const babelify = require("babelify");
 const source = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
 const del = require("del");
+const sass = require('gulp-sass');
 
 const pluginFile = {
   srcFile: "plugin.js",
@@ -16,7 +17,7 @@ const pluginFile = {
 /**
  * Clean dist dir.
  */
-function clean() {
+function cleanTask() {
   return del(['dist']);
 }
 
@@ -24,7 +25,7 @@ function clean() {
 /**
  * Copy all static files.
  */
-function copy() {
+function copyTask() {
   return gulp.src('./src/icons/**/*')
     .pipe(gulp.dest('./dist/icons'))
 }
@@ -33,7 +34,7 @@ function copy() {
 /**
  * Converts ES6 code into compatible browser code.
  */
-function babelize() {
+function babelizeTask() {
   let src = pluginFile.srcPath + pluginFile.srcFile;
 
   // By pattern.
@@ -50,6 +51,19 @@ function babelize() {
 
 }
 
+
+// Compiles sass files and moves the result to dist.
+function sassTask() {
+  return gulp.src('./src/plugin.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      outputStyle: 'expanded',
+      includePaths: ['./node_modules/breakpoint-sass/stylesheets']
+    }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dist'));
+}
+
 /**
  * Watcher.
  */
@@ -60,7 +74,12 @@ function watchTask() {
 /**
  * Build task.
  */
-var buildTask = gulp.series(clean, copy, babelize);
+let buildTask = gulp.series(
+  cleanTask,
+  copyTask,
+  babelizeTask,
+  sassTask
+);
 
 // Define tasks.
 exports.build = buildTask;

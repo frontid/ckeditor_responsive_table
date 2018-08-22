@@ -35,6 +35,9 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
       command: 'setTable'
     });
 
+
+    editor.addContentsCss(this.path + 'plugin.css');
+
   }
 });
 

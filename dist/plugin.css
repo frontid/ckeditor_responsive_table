@@ -1,0 +1,64 @@
+.ck-responsive-table {
+  background: red;
+}
+
+.ck-responsive-table thead {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table thead {
+    display: table-header-group;
+  }
+}
+
+.ck-responsive-table thead th {
+  font-weight: bold;
+}
+
+.ck-responsive-table tbody tr {
+  border-bottom: 2px solid black;
+  display: block;
+  margin-bottom: 13px;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table tbody tr {
+    display: table-row;
+    border-bottom: 1px solid red;
+  }
+}
+
+.ck-responsive-table tbody tr:nth-child(even) {
+  background: olive;
+}
+
+.ck-responsive-table tbody tr td {
+  display: block;
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table tbody tr td {
+    text-align: left;
+    display: table-cell;
+  }
+}
+
+.ck-responsive-table tbody tr td:before {
+  content: attr(data-label);
+  font-weight: 600;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .ck-responsive-table tbody tr td:before {
+    content: none;
+  }
+}
+
+.ck-responsive-table tbody tr td:last-child {
+  border-bottom: 0;
+}
+
+/*# sourceMappingURL=plugin.css.map */
