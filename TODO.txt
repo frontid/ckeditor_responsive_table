@@ -2,6 +2,5 @@
 - Allow an existent table (a responsive table) to be edited.
 - Add a sample.
 - Create the CKEditor v5 plugin.
-- Add minimal CSS.
 - Complete README with an explanation and usages.
 - Add developer documentation.

@@ -54,21 +54,22 @@ function babelizeTask() {
 
 // Compiles sass files and moves the result to dist.
 function sassTask() {
-  return gulp.src('./src/plugin.scss')
+  return gulp.src('./src/styles/plugin.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'expanded',
       includePaths: ['./node_modules/breakpoint-sass/stylesheets']
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./dist/styles'));
 }
 
 /**
  * Watcher.
  */
 function watchTask() {
-  return gulp.watch('src/**/*', buildTask);
+  gulp.watch('src/**/*', sassTask);
+  gulp.watch(['src/**/*', '!src/styles'], buildTask);
 }
 
 /**
