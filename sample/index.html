@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor Responsive Table sample</title>
+
+    <!-- Add and run ckeditor. -->
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+    <script src="js/init.js"></script>
+
+    <!-- For sample purposes. -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/sample.css">
+
+    <!-- Plugin required CSS file.-->
+    <link rel="stylesheet" href="../dist/styles/plugin.css">
+    <!-- Plugin optional CSS file. Provides a basic styling. -->
+    <link rel="stylesheet" href="../dist/styles/basic-theme.css">
+</head>
+
+<body>
+
+<div class="editor-container">
+    <div class="heading">
+        <h1>Responsive table sample</h1>
+    </div>
+
+    <div>
+        <div id="editor">
+            <!-- Provide an initial table. -->
+            <table class="table ck-responsive-table cke_show_border ckrt-basic-theme">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Lastname</th>
+                    <th>Age</th>
+                    <th>Job</th>
+                    <th>Hobby</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>Marcelo</td>
+                    <td>Tosco</td>
+                    <td>34</td>
+                    <td>Programmer</td>
+                    <td>code</td>
+                </tr>
+                <tr>
+                    <td>Jenifer</td>
+                    <td>Lawrence</td>
+                    <td>28</td>
+                    <td>Actress</td>
+                    <td>party</td>
+                </tr>
+                <tr>
+                    <td>Ra</td>
+                    <td>Ra</td>
+                    <td>3000</td>
+                    <td>God</td>
+                    <td>snow ski<br></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="output-container">
+    <h2>Live output</h2>
+    <p>Resize the browser to see it in action.</p>
+    <div id="output"></div>
+</div>
+
+<script>
+  init();
+
+  $(function () {
+    let $output = $('#output');
+    let editor = CKEDITOR.instances.editor;
+    $output.html(editor.getData());
+
+    editor.on('change', function () {
+      $output.html(editor.getData());
+    });
+
+  });
+</script>
+
+</body>
+</html>

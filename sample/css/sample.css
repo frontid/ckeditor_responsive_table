@@ -1,0 +1,29 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.editor-container {
+    background: #1f7cd8;
+    padding: 30px;
+}
+
+.editor-container > * {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.output-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}

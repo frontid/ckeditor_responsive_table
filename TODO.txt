@@ -4,4 +4,3 @@
 - Create the CKEditor v5 plugin.
 - Complete README with an explanation and usages.
 - Add developer documentation.
-- $output.html(editor.getData()); has a strange behavior. When you write a work it will only react until the last word.
