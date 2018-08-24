@@ -2,61 +2,51 @@
 
 $tab: 768px;
 
-.ck-responsive-table.ckrt-basic-theme {
-  border-collapse: collapse;
+body:not(.cke_editable) {
 
-  thead {
-    display: none;
+  .ck-responsive-table {
+    border-collapse: collapse;
 
-    @include breakpoint ($tab) {
-      display: table-header-group;
-    }
+    thead {
+      background: #ccc;
 
-    tr {
-      background: #333;
-    }
-
-    th {
-      font-weight: 600;
-      border-bottom: 2px solid #369;
-      padding: 10px 5px;
-    }
-
-  }
-
-  tbody {
-    tr {
-      border-bottom: 2px solid #333;
-      display: block;
-      margin-bottom: 13px;
-
-      @include breakpoint ($tab) {
-        display: table-row;
-        border-bottom: 1px solid #333;
+      th {
+        font-weight: 600;
+        padding: 15px;
+        text-align: left;
       }
 
-      &:nth-child(even) {
-        background: red;
-      }
+    }
 
-      td {
-        display: block;
-        text-align: right;
-        padding: 10px 5px;
+    tbody {
+      border: 1px solid #ccc;
+
+      tr {
+        border-bottom: 3px solid #ccc;
 
         @include breakpoint ($tab) {
-          text-align: left;
-          display: table-cell;
+          border-bottom: none;
         }
 
-        &:before {
-          content: attr(data-label);
-          font-weight: 600;
-          text-transform: uppercase;
-          float: left;
+        td {
+          text-align: right;
+          padding: 15px;
+          border-bottom: 1px solid #ccc;
 
           @include breakpoint ($tab) {
-            content: none;
+            text-align: left;
+            border: 1px solid #ccc;
+          }
+
+          &:before {
+            float: left;
+            font-weight: 600;
+            margin-right: 10px;
+
+          }
+
+          &:last-child {
+            border-bottom: 0;
           }
 
         }
@@ -66,9 +56,7 @@ $tab: 768px;
         }
 
       }
-
     }
+
   }
-
 }
-

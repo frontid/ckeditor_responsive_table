@@ -1,71 +1,55 @@
-.ck-responsive-table.ckrt-basic-theme {
+body:not(.cke_editable) .ck-responsive-table {
   border-collapse: collapse;
 }
 
-.ck-responsive-table.ckrt-basic-theme thead {
-  display: none;
+body:not(.cke_editable) .ck-responsive-table thead {
+  background: #ccc;
 }
 
-@media (min-width: 768px) {
-  .ck-responsive-table.ckrt-basic-theme thead {
-    display: table-header-group;
-  }
-}
-
-.ck-responsive-table.ckrt-basic-theme thead tr {
-  background: #333;
-}
-
-.ck-responsive-table.ckrt-basic-theme thead th {
+body:not(.cke_editable) .ck-responsive-table thead th {
   font-weight: 600;
-  border-bottom: 2px solid #369;
-  padding: 10px 5px;
+  padding: 15px;
+  text-align: left;
 }
 
-.ck-responsive-table.ckrt-basic-theme tbody tr {
-  border-bottom: 2px solid #333;
-  display: block;
-  margin-bottom: 13px;
+body:not(.cke_editable) .ck-responsive-table tbody {
+  border: 1px solid #ccc;
+}
+
+body:not(.cke_editable) .ck-responsive-table tbody tr {
+  border-bottom: 3px solid #ccc;
 }
 
 @media (min-width: 768px) {
-  .ck-responsive-table.ckrt-basic-theme tbody tr {
-    display: table-row;
-    border-bottom: 1px solid #333;
+  body:not(.cke_editable) .ck-responsive-table tbody tr {
+    border-bottom: none;
   }
 }
 
-.ck-responsive-table.ckrt-basic-theme tbody tr:nth-child(even) {
-  background: red;
-}
-
-.ck-responsive-table.ckrt-basic-theme tbody tr td {
-  display: block;
+body:not(.cke_editable) .ck-responsive-table tbody tr td {
   text-align: right;
-  padding: 10px 5px;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
 }
 
 @media (min-width: 768px) {
-  .ck-responsive-table.ckrt-basic-theme tbody tr td {
+  body:not(.cke_editable) .ck-responsive-table tbody tr td {
     text-align: left;
-    display: table-cell;
+    border: 1px solid #ccc;
   }
 }
 
-.ck-responsive-table.ckrt-basic-theme tbody tr td:before {
-  content: attr(data-label);
-  font-weight: 600;
-  text-transform: uppercase;
+body:not(.cke_editable) .ck-responsive-table tbody tr td:before {
   float: left;
+  font-weight: 600;
+  margin-right: 10px;
 }
 
-@media (min-width: 768px) {
-  .ck-responsive-table.ckrt-basic-theme tbody tr td:before {
-    content: none;
-  }
+body:not(.cke_editable) .ck-responsive-table tbody tr td:last-child {
+  border-bottom: 0;
 }
 
-.ck-responsive-table.ckrt-basic-theme tbody tr td:last-child {
+body:not(.cke_editable) .ck-responsive-table tbody tr:last-child {
   border-bottom: 0;
 }
 

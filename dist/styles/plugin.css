@@ -1,40 +1,39 @@
-.ck-responsive-table thead {
+body:not(.cke_editable) .ck-responsive-table thead {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .ck-responsive-table thead {
+  body:not(.cke_editable) .ck-responsive-table thead {
     display: table-header-group;
   }
 }
 
-.ck-responsive-table tbody tr {
+body:not(.cke_editable) .ck-responsive-table tbody tr {
   display: block;
 }
 
 @media (min-width: 768px) {
-  .ck-responsive-table tbody tr {
+  body:not(.cke_editable) .ck-responsive-table tbody tr {
     display: table-row;
   }
 }
 
-.ck-responsive-table tbody tr td {
+body:not(.cke_editable) .ck-responsive-table tbody tr td {
   display: block;
 }
 
 @media (min-width: 768px) {
-  .ck-responsive-table tbody tr td {
+  body:not(.cke_editable) .ck-responsive-table tbody tr td {
     display: table-cell;
   }
 }
 
-.ck-responsive-table tbody tr td:before {
+body:not(.cke_editable) .ck-responsive-table tbody tr td:before {
   content: attr(data-label);
-  float: left;
 }
 
 @media (min-width: 768px) {
-  .ck-responsive-table tbody tr td:before {
+  body:not(.cke_editable) .ck-responsive-table tbody tr td:before {
     content: none;
   }
 }

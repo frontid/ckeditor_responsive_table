@@ -2,45 +2,43 @@
 
 $tab: 768px;
 
-.ck-responsive-table {
+body:not(.cke_editable) {
 
-  thead {
-    display: none;
+  .ck-responsive-table {
 
-    @include breakpoint ($tab) {
-      display: table-header-group;
-    }
-
-  }
-
-  tbody {
-    tr {
-      display: block;
+    thead {
+      display: none;
 
       @include breakpoint ($tab) {
-        display: table-row;
+        display: table-header-group;
       }
+    }
 
-      td {
+    tbody {
+      tr {
         display: block;
 
         @include breakpoint ($tab) {
-          display: table-cell;
+          display: table-row;
         }
 
-        &:before {
-          content: attr(data-label);
-          float: left;
+        td {
+          display: block;
 
           @include breakpoint ($tab) {
-            content: none;
+            display: table-cell;
           }
 
+          &:before {
+            content: attr(data-label);
+
+            @include breakpoint ($tab) {
+              content: none;
+            }
+
+          }
         }
-
       }
-
     }
   }
-
 }

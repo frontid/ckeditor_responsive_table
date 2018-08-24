@@ -17,10 +17,10 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
 
     // On init we need to track the table changes.
     editor.on('change', function (e) {
-      var el = editor.getSelection().getStartElement();
+      let el = editor.getSelection().getStartElement();
 
       if (el !== null && el.$.tagName === "TH") {
-        var _table = el.getParent().getParent().getParent();
+        let _table = el.getParent().getParent().getParent();
         if (_table.hasClass('ck-responsive-table')) {
           Tools.updateHiddenHeaderLabels(_table);
         }
@@ -41,8 +41,8 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
 });
 
 CKEDITOR.dialog.add('table_dialog', function (editor) {
-  var dialog;
-  var table;
+  let dialog;
+  let table;
 
   /**
    * Stores the dialog user input into an accessible
@@ -50,8 +50,8 @@ CKEDITOR.dialog.add('table_dialog', function (editor) {
    *
    * @param data
    */
-  var commitValue = function (data) {
-    var id = this.id;
+  let commitValue = function (data) {
+    let id = this.id;
 
     if (!data.info) {
       data.info = {};
@@ -91,10 +91,10 @@ CKEDITOR.dialog.add('table_dialog', function (editor) {
        * @docme
        */
       editor.on('change', function (e) {
-        var el = editor.getSelection().getStartElement();
+        let el = editor.getSelection().getStartElement();
 
         if (el !== null && el.$.tagName === "TH") {
-          var _table = el.getParent().getParent().getParent();
+          let _table = el.getParent().getParent().getParent();
           if (_table.hasClass('ck-responsive-table')) {
             Tools.updateHiddenHeaderLabels(_table);
           }
