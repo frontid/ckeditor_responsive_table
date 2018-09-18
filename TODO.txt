@@ -1,6 +1,3 @@
-- Fix source maps. Are wrong.
-- Allow an existent table (a responsive table) to be edited.
-- * Add a sample.
 - Create the CKEditor v5 plugin.
 - Complete README with an explanation and usages.
 - Add developer documentation.

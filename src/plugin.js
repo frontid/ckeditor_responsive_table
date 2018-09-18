@@ -16,18 +16,43 @@ CKEDITOR.plugins.add('ckeditor_responsive_table', {
     editor.addCommand('setTable', new CKEDITOR.dialogCommand('table_dialog'));
 
     // On init we need to track the table changes.
-    editor.on('change', function (e) {
-      let el = editor.getSelection().getStartElement();
+    editor.on('contentDom', function () {
+      let editable = editor.editable();
+      let tables = editable.find('.ck-responsive-table');
 
-      if (el !== null && el.$.tagName === "TH") {
-        let _table = el.getParent().getParent().getParent();
-        if (_table.hasClass('ck-responsive-table')) {
-          Tools.updateHiddenHeaderLabels(_table);
-        }
+      if (tables.count()) {
+        tables.toArray().forEach(function (table) {
+          Tools.updateHiddenHeaderLabels(table);
+          editor.fire('change');
+        });
       }
 
     });
 
+    // When an elements is inserted we want to put the cursor on the first cell.
+    editor.on('insertElement', function (payload) {
+      let element = payload.data;
+
+      if (Tools.isTable(element)) {
+        Tools.moveCursorToCel(0, 0, element, editor);
+        editor.fire('change');
+      }
+
+    });
+
+    /**
+     * Listen the editor changes and keep labels updated.
+     */
+    editor.on('change', function (payload) {
+      let editable = editor.editable();
+      let tables = editable.find('.ck-responsive-table');
+
+      // The tables needs to copy the th head into data attributes at the beginning.
+      tables.toArray().forEach(function (table) {
+        Tools.updateHiddenHeaderLabels(table);
+      });
+
+    });
 
     // Ad the button to the toolbar.
     editor.ui.addButton('ResponsiveTable', {
@@ -85,22 +110,6 @@ CKEDITOR.dialog.add('table_dialog', function (editor) {
       this.commitContent(data);
       table = Tools.buildTable(data.info);
       editor.insertElement(table);
-      Tools.moveCursorToCel(0, 0, table, editor);
-
-      /**
-       * @docme
-       */
-      editor.on('change', function (e) {
-        let el = editor.getSelection().getStartElement();
-
-        if (el !== null && el.$.tagName === "TH") {
-          let _table = el.getParent().getParent().getParent();
-          if (_table.hasClass('ck-responsive-table')) {
-            Tools.updateHiddenHeaderLabels(_table);
-          }
-        }
-
-      });
     },
 
     contents: [
@@ -127,17 +136,6 @@ CKEDITOR.dialog.add('table_dialog', function (editor) {
             'default': 2,
             label: "Columns",
             required: true,
-            setup: function (selectedTable) {
-              // this.setValue(tableColumns(selectedTable));
-            },
-            commit: commitValue
-          },
-          {
-            type: 'checkbox',
-            id: 'setHeader',
-            'default': 0,
-            label: "Add a header",
-            required: false,
             setup: function (selectedTable) {
               // this.setValue(tableColumns(selectedTable));
             },

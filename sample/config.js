@@ -28,5 +28,7 @@ CKEDITOR.editorConfig = function (config) {
     {name: 'basicstyles', items: ['ResponsiveTable']}
   ];
 
+  // Allow all html tags for demo purpose.
+  config.allowedContent = true;
 
 };

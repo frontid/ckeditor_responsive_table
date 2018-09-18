@@ -3,6 +3,14 @@ class Tools {
   constructor() {
   }
 
+
+  /**
+   * Checks if the element is a responsive table.
+   */
+  static isTable(el) {
+    return el.hasClass('ck-responsive-table');
+  }
+
   /**
    * Updates the hidden labels (only visible at mobile).
    *
@@ -45,18 +53,16 @@ class Tools {
       table.addClass('ckrt-basic-theme');
     }
 
-    if (data.setHeader === true) {
-      let header = new CKEDITOR.dom.element("thead");
-      let tr = new CKEDITOR.dom.element("tr");
+    let header = new CKEDITOR.dom.element("thead");
+    let tr = new CKEDITOR.dom.element("tr");
 
-      for (let k = 0; k < cols; k++) {
-        let th = new CKEDITOR.dom.element("th");
-        tr.append(th);
-      }
-
-      header.append(tr);
-      table.append(header);
+    for (let k = 0; k < cols; k++) {
+      let th = new CKEDITOR.dom.element("th");
+      tr.append(th);
     }
+
+    header.append(tr);
+    table.append(header);
 
     for (let i = 0; i < rows; i++) {
       let $row = new CKEDITOR.dom.element("tr");
