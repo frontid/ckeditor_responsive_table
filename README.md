@@ -5,7 +5,7 @@ CKEditor responsible table plugin.
 
 # Usage
 
-```javascript
+```html
 <!-- Plugin required CSS file.-->
 <link rel="stylesheet" href="../dist/styles/plugin.css">
 <!-- Plugin optional CSS file. Provides a basic styling. -->
